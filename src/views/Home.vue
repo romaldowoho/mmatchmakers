@@ -9,8 +9,18 @@
           :group="{ name: 'fighter', pull: false, put: true }"
         >
           <div style="display: flex;">
-            <div v-for="fighter in fighter_one" :key="fighter[0]" style="width: 90%;">{{fighter[0]}}</div>
-            <div v-if="this.fighter_one.length" class="btn-close" @click="fighter_one.pop()">
+            <div
+              v-for="fighter in fighter_one"
+              :key="fighter[0]"
+              style="width: 90%;"
+            >
+              {{ fighter[0] }}
+            </div>
+            <div
+              v-if="this.fighter_one.length"
+              class="btn-close"
+              @click="fighter_one.pop()"
+            >
               <Icon type="md-close" />
             </div>
           </div>
@@ -25,8 +35,18 @@
           :group="{ name: 'fighter', pull: false, put: true }"
         >
           <div style="display: flex;">
-            <div v-for="fighter in fighter_two" :key="fighter[0]" style="width: 90%;">{{fighter[0]}}</div>
-            <div v-if="this.fighter_two.length" class="btn-close" @click="fighter_two.pop()">
+            <div
+              v-for="fighter in fighter_two"
+              :key="fighter[0]"
+              style="width: 90%;"
+            >
+              {{ fighter[0] }}
+            </div>
+            <div
+              v-if="this.fighter_two.length"
+              class="btn-close"
+              @click="fighter_two.pop()"
+            >
               <Icon type="md-close" />
             </div>
           </div>
@@ -39,7 +59,8 @@
         ghost
         size="large"
         style="background: linear-gradient(#0f2027,#203a43,#2c5364);"
-      >VOTE</Button>
+        >VOTE</Button
+      >
     </div>
 
     <div v-if="rankings.length" class="wrap">
@@ -53,17 +74,31 @@
             :list="wc.fighters"
             :group="{ name: 'fighter', pull: 'clone', put: false }"
           >
-            <div class="cell" v-for="(fighter, idx) in wc.fighters" :key="fighter[0]">
+            <div
+              class="cell"
+              v-for="(fighter, idx) in wc.fighters"
+              :key="fighter[0]"
+            >
               <div class="ranking">{{ idx + 1 }}</div>
               <div class="name">{{ fighter[0] }}</div>
               <div class="icon">
-                <Icon v-if="getRankingLabel(fighter[1]) == 1" type="ios-arrow-up" color="green" />
-                <Icon v-if="getRankingLabel(fighter[1]) == -1" type="ios-arrow-down" color="red" />
+                <Icon
+                  v-if="getRankingLabel(fighter[1]) == 1"
+                  type="ios-arrow-up"
+                  color="green"
+                />
+                <Icon
+                  v-if="getRankingLabel(fighter[1]) == -1"
+                  type="ios-arrow-down"
+                  color="red"
+                />
               </div>
               <div
                 v-if="fighter[1] && fighter[1] !== 'NR'"
                 class="ranking-change"
-              >{{ fighter[1][fighter[1].length - 1] }}</div>
+              >
+                {{ fighter[1][fighter[1].length - 1] }}
+              </div>
             </div>
           </draggable>
         </Card>
@@ -130,10 +165,10 @@ export default {
 
       // names are arranged in alphabetical order before saving to ensure consistency and avoid duplicate fights
       // Khabib vs Ferguson == Ferguson vs Khabib
-      let fight = f1 > f2 ? `${f2}-${f1}` : `${f1}-${f2}`;
+      let fight = f1 > f2 ? `${f2} - ${f1}` : `${f1}-${f2}`;
 
       db.collection("fights")
-        .where(fight, ">", 0)
+        .where("fight", "==", fight)
         .get()
         .then(query => {
           if (!query.empty) {
@@ -154,7 +189,11 @@ export default {
     incrementFightVotes(fight, id) {
       db.collection("fights")
         .doc(id)
-        .update({ [fight]: firebase.firestore.FieldValue.increment(1) })
+        .update({
+          fight: fight,
+          votes: firebase.firestore.FieldValue.increment(1),
+          lastVoted: new Date()
+        })
         .then(msg => {})
         .catch(err => {
           console.log(err);
@@ -163,13 +202,14 @@ export default {
     saveFight(fight) {
       db.collection("fights")
         .add({
-          [fight]: 1
+          fight: fight,
+          votes: 1,
+          lastVoted: new Date()
         })
         .then(docRef => {})
         .catch(err => {
           console.log(err);
         });
-      console.log(fight);
     }
   },
   created() {

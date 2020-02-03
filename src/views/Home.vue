@@ -90,6 +90,10 @@ export default {
     };
   },
   methods: {
+    clearVotingFields() {
+      this.fighter_one.pop();
+      this.fighter_two.pop();
+    },
     getRankingLabel(label) {
       if (!label || label == "NR") return 0;
       if (label.split(" ").indexOf("increased") !== -1) return 1;
@@ -132,24 +136,26 @@ export default {
         .where(fight, ">", 0)
         .get()
         .then(query => {
-          console.log(query);
           if (!query.empty) {
             this.incrementFightVotes(fight, query.docs[0].id);
           } else {
             this.saveFight(fight);
           }
+          this.$Message.success("Your vote has been saved");
         })
         .catch(err => {
+          this.$Message.error("Something went wrong. Please try again");
           console.log(err);
         });
+
+      // clear fields
+      this.clearVotingFields();
     },
     incrementFightVotes(fight, id) {
       db.collection("fights")
         .doc(id)
         .update({ [fight]: firebase.firestore.FieldValue.increment(1) })
-        .then(msg => {
-          console.log("msg", msg);
-        })
+        .then(msg => {})
         .catch(err => {
           console.log(err);
         });
@@ -159,9 +165,7 @@ export default {
         .add({
           [fight]: 1
         })
-        .then(docRef => {
-          console.log("Fight added");
-        })
+        .then(docRef => {})
         .catch(err => {
           console.log(err);
         });

@@ -194,7 +194,7 @@ export default {
           votes: firebase.firestore.FieldValue.increment(1),
           lastVoted: new Date()
         })
-        .then(msg => {})
+        .then()
         .catch(err => {
           console.log(err);
         });
@@ -206,7 +206,7 @@ export default {
           votes: 1,
           lastVoted: new Date()
         })
-        .then(docRef => {})
+        .then()
         .catch(err => {
           console.log(err);
         });

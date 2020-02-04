@@ -10,8 +10,7 @@
 </template>
 
 <script>
-const firebase = window.firebase;
-const db = firebase.firestore();
+import { db } from "../main";
 import moment from "moment";
 export default {
   data() {

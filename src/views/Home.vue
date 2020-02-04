@@ -81,7 +81,7 @@
             >
               <div class="ranking">{{ idx + 1 }}</div>
               <div class="name">
-                <a href="/votes">{{ fighter[0] }}</a>
+                <a href="">{{ fighter[0] }}</a>
               </div>
               <div class="icon">
                 <Icon

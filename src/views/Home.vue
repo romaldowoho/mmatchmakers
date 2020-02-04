@@ -315,7 +315,7 @@ export default {
   padding-left: 75px;
 }
 
-@media (max-width: 411px) {
+@media (max-width: 415px) {
   .vote-area {
     display: table;
   }

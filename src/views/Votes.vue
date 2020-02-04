@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="table">
     <Table
       stripe
       v-if="tableData.length"
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       tableCols: [
-        { title: "Fight", key: "fight", align: "center" },
+        { title: "Fight", key: "fight", align: "left" },
         { title: "Votes", key: "votes", align: "center" },
         { title: "Last vote date", key: "lastVoted", align: "center" }
       ],
@@ -43,4 +43,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.table {
+  font-weight: bold;
+}
+</style>

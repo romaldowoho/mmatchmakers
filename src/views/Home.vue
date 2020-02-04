@@ -242,6 +242,7 @@ export default {
 }
 .btn-vote {
   height: 200px;
+  margin: 0 auto;
 }
 .fighter-first {
   height: 70px;
@@ -312,5 +313,14 @@ export default {
 .title {
   text-align: left;
   padding-left: 75px;
+}
+
+@media (max-width: 411px) {
+  .vote-area {
+    display: table;
+  }
+  .btn-vote {
+    padding-top: 50px;
+  }
 }
 </style>

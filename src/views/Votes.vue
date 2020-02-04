@@ -18,7 +18,13 @@ export default {
     return {
       tableCols: [
         { title: "Fight", key: "fight", align: "left" },
-        { title: "Votes", key: "votes", align: "center" },
+        {
+          title: "Votes",
+          key: "votes",
+          align: "center",
+          sortable: true,
+          sortType: "desc"
+        },
         { title: "Last vote date", key: "lastVoted", align: "center" }
       ],
       tableData: []

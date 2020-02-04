@@ -8,41 +8,15 @@
     <title>Mmatchmakers</title>
   </head>
   <body style="background-color: #0f2027;">
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-analytics.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: process.env.FIREBASE_API_KEY,
-        authDomain: "mmatchmakers-542c1.firebaseapp.com",
-        databaseURL: "https://mmatchmakers-542c1.firebaseio.com",
-        projectId: "mmatchmakers-542c1",
-        storageBucket: "mmatchmakers-542c1.appspot.com",
-        messagingSenderId: "394077873027",
-        appId: "1:394077873027:web:fc072f3de4e526c1ea8cb6",
-        measurementId: "G-M4J18ZFZ8X"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
-
     <!--Disqus-->
 
     <script>
       var disqus_config = function() {
-        this.page.url = "https://www.mmatchmakers.com"; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = process.env.DISQUS_ID; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://www.mmatchmakers.com";
+        this.page.identifier = "myid";
       };
 
       (function() {
-        // DON'T EDIT BELOW THIS LINE
         var d = document,
           s = d.createElement("script");
         s.src = "https://mmatchmakers.disqus.com/embed.js";

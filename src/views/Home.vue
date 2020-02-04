@@ -113,8 +113,8 @@
 <script>
 import axios from "axios";
 import draggable from "vuedraggable";
-const firebase = window.firebase;
-const db = firebase.firestore();
+import firebase from "firebase";
+import { db } from "../main";
 
 export default {
   components: {

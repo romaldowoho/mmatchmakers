@@ -19,7 +19,7 @@
     <script>
       // Your web app's Firebase configuration
       var firebaseConfig = {
-        apiKey: "AIzaSyCRQ2LFo--LTShQTW2S5bI7Lm2IcyT_Ytw",
+        apiKey: process.env.FIREBASE_API_KEY,
         authDomain: "mmatchmakers-542c1.firebaseapp.com",
         databaseURL: "https://mmatchmakers-542c1.firebaseio.com",
         projectId: "mmatchmakers-542c1",
@@ -32,6 +32,31 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script>
+
+    <!--Disqus-->
+
+    <script>
+      var disqus_config = function() {
+        this.page.url = "https://www.mmatchmakers.com"; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = process.env.DISQUS_ID; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() {
+        // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement("script");
+        s.src = "https://mmatchmakers.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript
+      >Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript"
+        >comments powered by Disqus.</a
+      ></noscript
+    >
+
     <noscript>
       <strong
         >We're sorry but app doesn't work properly without JavaScript enabled.

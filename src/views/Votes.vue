@@ -52,5 +52,6 @@ export default {
 <style scoped>
 .table {
   font-weight: bold;
+  margin-top: 30px;
 }
 </style>

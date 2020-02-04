@@ -80,7 +80,9 @@
               :key="fighter[0]"
             >
               <div class="ranking">{{ idx + 1 }}</div>
-              <div class="name">{{ fighter[0] }}</div>
+              <div class="name">
+                <a href="/votes">{{ fighter[0] }}</a>
+              </div>
               <div class="icon">
                 <Icon
                   v-if="getRankingLabel(fighter[1]) == 1"
@@ -104,6 +106,7 @@
         </Card>
       </div>
     </div>
+    <div id="disqus_thread"></div>
   </div>
 </template>
 
@@ -303,6 +306,9 @@ export default {
   width: 75%;
   text-align: left;
   padding-left: 55px;
+}
+a {
+  color: white;
 }
 .icon {
   width: 5%;

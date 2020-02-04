@@ -16,13 +16,15 @@
         this.page.identifier = "myid";
       };
 
-      (function() {
-        var d = document,
-          s = d.createElement("script");
-        s.src = "https://mmatchmakers.disqus.com/embed.js";
-        s.setAttribute("data-timestamp", +new Date());
-        (d.head || d.body).appendChild(s);
-      })();
+      setTimeout(() => {
+        (function() {
+          var d = document,
+            s = d.createElement("script");
+          s.src = "https://mmatchmakers.disqus.com/embed.js";
+          s.setAttribute("data-timestamp", +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }, 500);
     </script>
     <noscript
       >Please enable JavaScript to view the

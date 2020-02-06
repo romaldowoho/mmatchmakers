@@ -168,7 +168,7 @@ export default {
 
       // names are arranged in alphabetical order before saving to ensure consistency and avoid duplicate fights
       // Khabib vs Ferguson == Ferguson vs Khabib
-      let fight = f1 > f2 ? `${f2} - ${f1}` : `${f1}-${f2}`;
+      let fight = f1 > f2 ? `${f2} - ${f1}` : `${f1} - ${f2}`;
 
       db.collection("fights")
         .where("fight", "==", fight)

@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="instructions">
+      <h3>Drag and drop fighters in the slots below</h3>
+    </div>
     <div class="vote-area">
       <div class="fighter-first">
         <draggable
@@ -13,14 +16,8 @@
               v-for="fighter in fighter_one"
               :key="fighter[0]"
               style="width: 90%;"
-            >
-              {{ fighter[0] }}
-            </div>
-            <div
-              v-if="this.fighter_one.length"
-              class="btn-close"
-              @click="fighter_one.pop()"
-            >
+            >{{ fighter[0] }}</div>
+            <div v-if="this.fighter_one.length" class="btn-close" @click="fighter_one.pop()">
               <Icon type="md-close" />
             </div>
           </div>
@@ -39,14 +36,8 @@
               v-for="fighter in fighter_two"
               :key="fighter[0]"
               style="width: 90%;"
-            >
-              {{ fighter[0] }}
-            </div>
-            <div
-              v-if="this.fighter_two.length"
-              class="btn-close"
-              @click="fighter_two.pop()"
-            >
+            >{{ fighter[0] }}</div>
+            <div v-if="this.fighter_two.length" class="btn-close" @click="fighter_two.pop()">
               <Icon type="md-close" />
             </div>
           </div>
@@ -59,11 +50,10 @@
         ghost
         size="large"
         style="background: linear-gradient(#0f2027,#203a43,#2c5364);"
-        >VOTE</Button
-      >
+      >VOTE</Button>
     </div>
 
-    <div v-if="rankings.length" class="wrap">
+    <div v-if="data_loaded" class="wrap">
       <div v-for="wc in rankings" :key="wc.wclass">
         <Card class="card" :padding="0">
           <h2 slot="title" class="title">{{ wc.wclass }}</h2>
@@ -74,45 +64,29 @@
             :list="wc.fighters"
             :group="{ name: 'fighter', pull: 'clone', put: false }"
           >
-            <div
-              class="cell"
-              v-for="(fighter, idx) in wc.fighters"
-              :key="fighter[0]"
-            >
+            <div class="cell" v-for="(fighter, idx) in wc.fighters" :key="fighter[0]">
               <div class="ranking">{{ idx + 1 }}</div>
               <div class="name">
-                <a href="">{{ fighter[0] }}</a>
+                <a href>{{ fighter[0] }}</a>
               </div>
               <div class="icon">
-                <Icon
-                  v-if="getRankingLabel(fighter[1]) == 1"
-                  type="ios-arrow-up"
-                  color="green"
-                />
-                <Icon
-                  v-if="getRankingLabel(fighter[1]) == -1"
-                  type="ios-arrow-down"
-                  color="red"
-                />
+                <Icon v-if="getRankingLabel(fighter[1]) == 1" type="ios-arrow-up" color="green" />
+                <Icon v-if="getRankingLabel(fighter[1]) == -1" type="ios-arrow-down" color="red" />
                 <div v-if="idx == 0 && wc.wclass.indexOf('P4P') < 0">
-                  <img
-                    src="../../public/belt.png"
-                    width="35px"
-                    height="15px"
-                    alt=""
-                  />
+                  <img src="../../public/belt.png" width="35px" height="15px" alt />
                 </div>
               </div>
               <div
                 v-if="fighter[1] && fighter[1] !== 'NR'"
                 class="ranking-change"
-              >
-                {{ fighter[1][fighter[1].length - 1] }}
-              </div>
+              >{{ fighter[1][fighter[1].length - 1] }}</div>
             </div>
           </draggable>
         </Card>
       </div>
+    </div>
+    <div v-else class="wrap">
+      <Spin size="large"></Spin>
     </div>
     <div id="disqus_thread"></div>
   </div>
@@ -130,6 +104,7 @@ export default {
   },
   data() {
     return {
+      data_loaded: false,
       rankings: [],
       fighter_one: [],
       fighter_two: []
@@ -232,16 +207,21 @@ export default {
       .catch(err => {
         console.log(err);
       });
+    this.data_loaded = true;
   }
 };
 </script>
 
 <style scoped>
+.instructions {
+  padding-top: 5%;
+  color: cadetblue;
+}
 .vote-area {
   height: 200px;
   display: flex;
   justify-content: center;
-  margin-top: 200px;
+  margin-top: 150px;
 }
 .btn-close {
   float: right;
@@ -332,9 +312,14 @@ a {
 @media (max-width: 415px) {
   .vote-area {
     display: table;
+    margin-top: 50px;
   }
   .btn-vote {
     padding-top: 50px;
+  }
+  .instructions {
+    padding-top: 0;
+    margin-top: 50px;
   }
 }
 </style>

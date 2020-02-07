@@ -94,6 +94,14 @@
                   type="ios-arrow-down"
                   color="red"
                 />
+                <div v-if="idx == 0 && wc.wclass.indexOf('P4P') < 0">
+                  <img
+                    src="../../public/belt.png"
+                    width="35px"
+                    height="15px"
+                    alt=""
+                  />
+                </div>
               </div>
               <div
                 v-if="fighter[1] && fighter[1] !== 'NR'"
@@ -281,7 +289,7 @@ export default {
   justify-content: space-around;
 }
 .card {
-  width: 350px;
+  width: 360px;
   height: 535px;
   margin-bottom: 30px;
   background: inherit;

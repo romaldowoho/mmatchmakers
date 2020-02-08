@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar />
     <router-view :key="$route.fullPath" />
+    <div id="disqus_thread"></div>
   </div>
 </template>
 
@@ -25,5 +26,8 @@ export default {
   margin-top: 40px;
   margin-left: 30px;
   margin-right: 30px;
+}
+#disqus_thread {
+  margin-top: 50px;
 }
 </style>
